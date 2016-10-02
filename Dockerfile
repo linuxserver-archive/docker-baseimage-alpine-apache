@@ -12,6 +12,7 @@ RUN \
 	nano \
 	openssl \
 	php5 \
+	php5-apache2 \
 	php5-cli \
 	php5-curl \
 	php5-fpm
