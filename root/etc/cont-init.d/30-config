@@ -1,0 +1,25 @@
+#!/usr/bin/with-contenv bash
+
+# make folders
+mkdir -p \
+	/config{/apache/site-confs,/keys,/log/apache,/www} \
+	/run/apache2
+
+# copy config
+[[ ! -f /config/apache/site-confs/default.conf ]] && \
+	cp /defaults/default.conf /config/apache/site-confs/default.conf
+if [[ $(find /config/www -type f | wc -l) -eq 0 ]]; then
+cp /defaults/index.html /config/www/index.html
+fi
+
+# make symlinks
+if [ ! -e /config/www/logs -o /config/www/modules -o /config/www/run ]; then
+ln -sf /var/log/apache2 /config/www/logs
+ln -sf /usr/lib/apache2 /config/www/modules
+ln -sf /run/apache2 /config/www/run
+fi
+
+# permissions
+chown -R abc:abc \
+	/config \
+	/run/apache2
