@@ -5,6 +5,10 @@ mkdir -p \
 	/config{/apache/site-confs,/keys,/log/apache,/www} \
 	/run/apache2
 
+# clear old pid
+[[ -e /run/apache2/httpd.pid ]] && \
+	rm /run/apache2/httpd.pid
+
 # copy config
 [[ ! -f /config/apache/site-confs/default.conf ]] && \
 	cp /defaults/default.conf /config/apache/site-confs/default.conf
