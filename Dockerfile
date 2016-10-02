@@ -4,9 +4,9 @@ MAINTAINER sparklyballs
 # install packages
 RUN \
  apk add --no-cache \
+	apache2-proxy \
 	apache2-ssl \
 	apache2-utils \
-	fcgi \
 	git \
 	logrotate \
 	nano \
